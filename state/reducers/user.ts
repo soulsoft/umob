@@ -10,42 +10,35 @@ export const slice = createSlice({
   name: 'user',
   initialState: {
     isUserLoggedIn: false,
-    isSplashScreen: true,
     token: undefined,
-    userInfo: {
-      user: {
-        user_id: undefined,
-        email: undefined,
-        name: null,
-        nick_name: null,
-        location: null,
-        score: 0,
-      },
-    },
+    userInfo: undefined,
   },
   reducers: {
     setUserInfos: (state, action: PayloadAction<any>) => {
       state.userInfo = action.payload;
     },
-    endSplashLoading: (state, action: PayloadAction<any>) =>{
-      state.isSplashScreen= false;
+    setIsLoggedIn: (state, action: PayloadAction<any>) =>{
+      state.isUserLoggedIn= action.payload;
     }
   },
 });
-export const {
+ const {
   setUserInfos,
-  endSplashLoading
+  setIsLoggedIn
 } = slice.actions;
 
 const updateUserInfos = (user: any) => (dispatch: any) => {
   dispatch(setUserInfos(user));
 };
 
+const updateIsLoggedIn = (value: boolean) => (dispatch: any) => {
+  dispatch(setIsLoggedIn(value));
+};
+
 
 export {
-  endSplashLoading,
   updateUserInfos,
-
+  updateIsLoggedIn
 };
 
 export default slice.reducer;

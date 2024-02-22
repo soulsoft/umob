@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "707690087350",
+    "project_id": "umobtest-7d6bb",
+    "storage_bucket": "umobtest-7d6bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707690087350:android:4b96e4c7b4525a01dab717",
+        "android_client_info": {
+          "package_name": "com.umob_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRPnt_yEmaDNoMrufG6haVQgKD2G-0ucw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

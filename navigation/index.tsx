@@ -9,6 +9,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import SplashScreen from '../screens/SplashStack/SplashScreen';
 import HomeScreen from '../screens/HomeScreen';
+import AuthScreen from '../screens/SigninScreen';
 import QuizScreen from '../screens/QuizScreen';
 import {useAppDispatch, useAppSelector} from '../state/redux-hooks';
 
@@ -62,6 +63,23 @@ const HomeStackScreens: FC = () => {
   );
 };
 
+
+const AuthStackScreens: FC = () => {
+  console.log('HomeStack');
+  return (
+    <HomeStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <HomeStack.Screen
+        name={'AuthScreen'}
+        component={AuthScreen}
+        options={noHeader}
+      />
+    </HomeStack.Navigator>
+  );
+};
+
 const BottomNavScreens = ({navigation}: any) => (
   //console.log(navigation);
   <TabStack.Navigator
@@ -69,7 +87,7 @@ const BottomNavScreens = ({navigation}: any) => (
       tabBarShowLabel: false,
       tabBarStyle: {
         height: Platform.OS === ANDROID ? 62 : 80,
-        backgroundColor: 'white',
+        backgroundColor: 'black',
         elevation: 2,
         borderWidth: 0,
         borderTopWidth: 1,
@@ -112,7 +130,8 @@ const BottomNavScreens = ({navigation}: any) => (
 
 const RootStackScreens: FC = () => {
 
-  const {userInfo, isSplashScreen} = useAppSelector(state => state.user);
+  const { isSplashScreen} = useAppSelector(state => state.configuration);
+  const { isUserLoggedIn} = useAppSelector(state => state.user);
   const dispatch = useAppDispatch();
 
   if (isSplashScreen) {
@@ -127,7 +146,7 @@ const RootStackScreens: FC = () => {
     );
   }
 
-  if (!isSplashScreen) {
+  if (isUserLoggedIn) {
     return (
       <RootStack.Navigator
         screenOptions={{
@@ -141,6 +160,17 @@ const RootStackScreens: FC = () => {
         <RootStack.Screen name={'HOME_STACK'} component={HomeStackScreens} />
       </RootStack.Navigator>
     );
+  } else {
+    return (
+      <RootStack.Navigator
+        screenOptions={{
+          headerShown: false,
+          animation: 'none',
+        }}>
+        <RootStack.Screen name={'AUTH_STACK'} component={AuthStackScreens} />
+      </RootStack.Navigator>
+    );
+
   }
 
   return (

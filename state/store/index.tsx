@@ -15,12 +15,14 @@ const reducers = combineReducers(rootReducers);
 const persistConfig = {
   key: 'primary',
   storage: AsyncStorage,
-  whitelist: [ 'user'], // only persisted reducers
+  whitelist: [ 'user', 'providers'], // only persisted reducers
 };
+
 
 const store = configureStore({
   reducer: persistReducer(persistConfig, reducers),
   devTools: process.env.NODE_ENV !== 'production',
+  middleware: [thunk, logger],
 });
 
 const persistor = persistStore(store);

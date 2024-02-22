@@ -1,4 +1,9 @@
 {
   "name": "umob_test",
-  "displayName": "umob_test"
+  "displayName": "umob_test",
+  "plugins": [
+    "@react-native-firebase/app",
+    "@react-native-firebase/auth",
+    "@react-native-firebase/firestore"
+  ]
 }

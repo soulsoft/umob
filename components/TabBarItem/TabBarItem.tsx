@@ -4,13 +4,7 @@
  */
 import React, {FC} from 'react';
 import {View, Text} from 'react-native';
-import {SvgXml} from 'react-native-svg';
 import styles from './styles';
-import {
-  ProfileIcon,
-  HomeIcon,
-  MapIcon,
-} from '../../config/images';
 import { Gameboy, Profile,Map } from "iconsax-react-native";
 
 export interface TabBarItemProps {
@@ -24,15 +18,14 @@ const TabBarItem: FC<TabBarItemProps> = (props: TabBarItemProps) => {
   const getIcon = () => {
     switch (icon) {
       case 'Home':
-        return <Map size="22" color="#000000"/>;
+        return <Map size="22" color="grey"/>;
       case 'Quiz':
-        return <Gameboy size="22" color="#000000"/>;
+        return <Gameboy size="22" color="grey"/>;
       case 'Profile':
-        return <Profile size="22" color="#000000"/>;
+        return <Profile size="22" color="grey"/>;
 
       default:
-        //flipped them for debugging
-        return HomeIcon;
+        return <Map size="22" color="#000000"/>;
     }
   };
 
@@ -40,7 +33,7 @@ const TabBarItem: FC<TabBarItemProps> = (props: TabBarItemProps) => {
     <View>
       <View style={styles.container}>
         {getIcon()}
-        <Text style={{color: '#000000',fontWeight: '500'}}>
+        <Text style={{color: 'grey',fontWeight: '500'}}>
           {title}
         </Text>
         {focused && (

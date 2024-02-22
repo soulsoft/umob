@@ -1,19 +1,5 @@
-import { Platform, StyleSheet } from 'react-native'
-import { Height } from '../../config/constants';
+import { StyleSheet } from 'react-native'
 
-
-const getRightAlignment = () => {
-  if (Platform.OS === 'ios') {
-    return 10
-  }
-  if (Platform.OS === 'android') {
-    console.log("!@#", Height)
-    if (Height <= 700) {
-      return 6
-    }
-    return 12
-  }
-}
 
 export default StyleSheet.create({
   container: {

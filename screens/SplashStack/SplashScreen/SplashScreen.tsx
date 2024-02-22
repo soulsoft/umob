@@ -9,17 +9,18 @@ import { SvgXml } from 'react-native-svg';
 import { useAppDispatch } from '../../../state/redux-hooks';
 import { SplashLogo } from '../../../config/images';
 import styles from './styles';
-import {
-  endSplashLoading, } from "../../../state/reducers/user";
+import { updateIsSplashScreen } from "../../../state/reducers/configuration";
+import { fetchProviderss } from "../../../state/reducers/providers";
+
 
 
 const SplashScreen: FC = ({ navigation }: any) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-
+    dispatch(fetchProviderss());
     setTimeout(()=>{
-      dispatch(endSplashLoading());
+      dispatch(updateIsSplashScreen(false));
     }, 2000)
 
   }, []);

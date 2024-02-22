@@ -172,7 +172,7 @@ const QuizScreen: FC = ({navigation}: any) => {
               setStart(true);
             }}/>
           </View>}
-          <View style={{flex:1,backgroundColor: '#ffffff', alignSelf: 'stretch', paddingHorizontal:40, justifyContent: 'center'}}>
+          <View style={{flex:1, alignItems: 'center', justifyContent: 'center',backgroundColor: '#ffffff', alignSelf: 'stretch', paddingHorizontal:40}}>
           {start && <View>
           {showResult ? (
             <View>
@@ -182,10 +182,10 @@ const QuizScreen: FC = ({navigation}: any) => {
               <UmobButton text={"Restart Quiz"} onPressButton={restartQuiz}/>
             </View>
           ) : (
-            <View>
-              <Text style={{marginVertical:20, fontSize: 18}}>{questions[currentQuestionIndex].question}</Text>
+            <View style={{alignItems: 'center'}}>
+              <Text style={{marginVertical:20, fontSize: 20}}>{questions[currentQuestionIndex].question}</Text>
               {questions[currentQuestionIndex].options.map(option => (
-                <UmobButton customWidth={260} text={option} onPressButton={() => handleAnswer(option)}/>
+                <UmobButton text={option} onPressButton={() => handleAnswer(option)}/>
               ))}
             </View>
           )}</View>}
