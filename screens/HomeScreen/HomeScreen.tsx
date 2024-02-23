@@ -9,7 +9,6 @@ import {
 
 import MapView, { MapMarker, Marker } from "react-native-maps";
 import {useAppDispatch, useAppSelector} from '../../state/redux-hooks';
-import { fetchProviderss } from "../../state/reducers/providers";
 
 const HomeScreen: FC = ({navigation}: any) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,10 +16,12 @@ const HomeScreen: FC = ({navigation}: any) => {
   const dispatch = useAppDispatch();
   const {userInfo} = useAppSelector(state => state.user);
   const {providers} = useAppSelector(state => state.providers);
-  useEffect(() => {
 
+  useEffect(() => {
     //dispatch(fetchProviderss());
   }, []);
+
+
   const markerRef = useRef<MapMarker>(null);
   return (
     <SafeAreaView
