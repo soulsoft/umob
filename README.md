@@ -27,8 +27,8 @@ Native Async Storage and Redux Persist for seamless user experience across sessi
 5. **Redux Thunk & Logger Middleware**: Middleware enabling asynchronous actions and providing enhanced debugging
    capabilities.
 
-6. **React Native Maps**: Integrated for displaying data on an interactive map interface, allowing users to explore
-   geographical information.
+6. **React Native Maps**: Integrated for displaying providers data on map interface, allowing users to explore
+   geographical information of all providers.
 
 7. **React Native Async Storage / AsyncStorage**: Utilized for storing data locally on the device, ensuring persistence
    of user preferences and application state.
