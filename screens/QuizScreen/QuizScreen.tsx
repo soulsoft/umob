@@ -4,10 +4,8 @@ import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import {
   FlatList,
   Image,
-  ScrollView,
   StyleSheet,
   Text,
-  useColorScheme,
   View
 } from "react-native";
 
@@ -41,10 +39,10 @@ const QuizScreen: FC = ({ navigation }: any) => {
       id: 1,
       question: "How many Cykl Bikes Available in Wageningen city?",
       options: [
-        { label: getRandomNumber(1, 400), isCorrect: false },
-        { label: getRandomNumber(1, 400), isCorrect: false },
+        { label: "200", isCorrect: false },
+        { label: "150", isCorrect: false },
         { label: provider2.length.toString(), isCorrect: true },
-        { label: getRandomNumber(1, 400), isCorrect: false }
+        { label: "20", isCorrect: false }
       ]
     },
     {
@@ -79,6 +77,24 @@ const QuizScreen: FC = ({ navigation }: any) => {
         { label: "1350", isCorrect: false },
         { label: provider2.length + provider3.length, isCorrect: true }
       ]
+    },
+    {
+      id: 6,
+      question: "What is the color of the pins on the map?",
+      options: [
+        { label: "Red", isCorrect: true },
+        { label: "blue", isCorrect: false },
+        { label: "Green", isCorrect: true },
+        { label: "Yellow", isCorrect: false }
+      ]
+    }, {
+      id: 7,
+      question: "What is the color of the pin of the RideCheck provider Vehicle?",
+      options: [
+        { label: "Green", isCorrect: false },
+        { label: "Orange", isCorrect: false },
+        { label: "Red", isCorrect: true }
+      ]
     }];
 
   const restartQuiz = () => {
@@ -94,6 +110,69 @@ const QuizScreen: FC = ({ navigation }: any) => {
     setShowAnswer(true);
     setShowResult(false);
   };
+
+  const ItemRender = (
+    title: string,
+    content: any,
+    renderSeparator: boolean,
+    children?: any
+  ) => (
+    <>
+      <View
+        style={{
+          height: 66,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          alignSelf: "stretch",
+          paddingVertical: 10,
+          paddingHorizontal: 10
+        }}>
+        <View
+          style={{
+            flex: 0.5,
+            alignItems: "flex-start"
+          }}>
+          <Text
+            style={{
+              fontSize: 16,
+              color: "#424242",
+              fontWeight: "400"
+            }}>
+            {title}
+          </Text>
+        </View>
+        <View
+          style={{
+            flex: 2,
+            height: 60,
+            alignItems: "flex-start",
+            justifyContent: "center"
+          }}>
+          <Text
+            style={{
+              fontSize: 16,
+              color: "#757575",
+              fontWeight: "400",
+              textAlign: "center"
+            }}>
+            {content}
+          </Text>
+        </View>
+      </View>
+      {children}
+      {renderSeparator && (
+        <View
+          style={{
+            backgroundColor: "#BDBDBD40",
+            height: 1,
+            alignSelf: "stretch",
+            marginHorizontal: 10
+          }}
+        />
+      )}
+    </>
+  );
 
 
   return (<View style={styles.container}>
@@ -126,6 +205,8 @@ const QuizScreen: FC = ({ navigation }: any) => {
           dispatch(updateCurrentScore(0));
           setStart(true);
         }} />
+        {/*<Text style={{ fontSize: 20, textAlign: "center", marginTop: 20 }}>Quiz scores history</Text>*/}
+        {/*{ItemRender("1- ", " 23-02-2023 | Score 88 ", true)}*/}
       </View>}
       <View style={styles.quizContainer}>
         {start && <View>
@@ -173,7 +254,9 @@ const styles = StyleSheet.create({
   ctaContainerStyle: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    paddingHorizontal: 10,
+    alignSelf: "stretch"
   },
   infoTextStyle: {
     color: "#ffffff",
