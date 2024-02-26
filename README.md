@@ -84,6 +84,7 @@ Once the app is running, users can:
 - Implement functionality to save user scores and history on Firebase.
 - Develop a backend using Node.js or Nest.js.
 - Integrate Lottie animations.
+- Adding E2E testing
 
 ## License
 
