@@ -1,79 +1,90 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Assignment Test App README
 
-# Getting Started
+## Overview
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+This README provides an overview of the architecture and functionality of the Assignment Test App. This app is developed
+using React Native and integrates various APIs to consume bike and vehicle provider data. The app generates quiz
+questions based on the retrieved data to engage users in an interactive learning experience. It utilizes Firebase
+services for backend functionalities including storage and authentication. The architecture incorporates popular
+libraries such as React Navigation, React Redux, Redux Thunk, and Redux Logger for seamless navigation, state
+management, and middleware functionalities. Additionally, it utilizes React Native Maps to visualize data on a map
+interface, aiding users in exploring the data before initiating the quiz. Local data storage is facilitated by React
+Native Async Storage and Redux Persist for seamless user experience across sessions.
 
-## Step 1: Start the Metro Server
+## Architecture
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+### Components:
 
-To start Metro, run the following command from the _root_ of your React Native project:
+1. **React Native**: V 0.73.4
 
-```bash
-# using npm
-npm start
+2. **Firebase**: Utilized for backend services including authentication, storage, and database functionalities.
 
-# OR using Yarn
-yarn start
-```
+3. **React Navigation**: Used for seamless navigation between different screens and components within the application.
 
-## Step 2: Start your Application
+4. **React Redux**: Employed for efficient state management, ensuring a predictable state container across the
+   application.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+5. **Redux Thunk & Logger Middleware**: Middleware enabling asynchronous actions and providing enhanced debugging
+   capabilities.
 
-### For Android
+6. **React Native Maps**: Integrated for displaying data on an interactive map interface, allowing users to explore
+   geographical information.
 
-```bash
-# using npm
-npm run android
+7. **React Native Async Storage / AsyncStorage**: Utilized for storing data locally on the device, ensuring persistence
+   of user preferences and application state.
 
-# OR using Yarn
-yarn android
-```
+8. **Redux Persist**: Integrated to enable seamless data persistence across app sessions, enhancing user experience by
+   retaining application state.
 
-### For iOS
+### Functionality:
 
-```bash
-# using npm
-npm run ios
+1. **API Integration**: The app integrates with bike and vehicle provider APIs to fetch relevant data for generating
+   quiz questions.
 
-# OR using Yarn
-yarn ios
-```
+2. **Quiz Generation**: Based on the retrieved data, the app generates quiz questions to engage users and facilitate
+   learning about bike and vehicle providers.
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+3. **Firebase Authentication**: Firebase Authentication is employed to enable secure user authentication and access
+   control.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+4. **Firebase Storage**: Utilized for storing and retrieving static assets such as images or files.
 
-## Step 3: Modifying your App
+5. **React Native Maps Integration**: Data fetched from APIs is visualized on a map interface using React Native Maps,
+   enabling users to explore geographical information interactively.
 
-Now that you have successfully run the app, let's modify it.
+6. **Local Data Storage**: User preferences and application state are stored locally using React Native Async Storage
+   and Redux Persist, ensuring a seamless user experience across sessions.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+## Installation and Setup
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+To install and run the Assignment Test App locally, follow these steps:
 
-## Congratulations! :tada:
+1. Clone the repository from [GitHub](https://github.com/your/repository).
+2. Navigate to the project directory.
+3. Run `yarn install` to install project dependencies.
+4. Set up Firebase project and configure Firebase credentials in the app.
+5. Run `yarn start` to start the Metro Server.
+6. Hit `a` to choose launching the app on an Android emulator or device.
 
-You've successfully run and modified your React Native App. :partying_face:
+## Usage
 
-### Now what?
+Once the app is running, users can:
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+- Authenticate using Firebase Authentication.
+- Explore bike and vehicle provider data on the map interface.
+- Initiate quiz sessions to test their knowledge based on the retrieved data.
 
-# Troubleshooting
+## If I had more time, here are the things I would change:
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+- Address the performance issue related to the heavy set of stored data by either reducing the amount of saved data or
+  storing data in an SQLite database.
+- Update provider pins with the right ones and optimize pin grouping to resolve performance issues on Google Maps.
+- Finish implementing the Profile Screen functionality, enabling users to modify their information and upload avatars.
+- Adding filters buttons on the Map, so user can navigate easly and filter what he want to see on the map.
+- Implement functionality to save user scores and history on Firebase.
+- Develop a backend using Node.js or Nest.js.
+- Integrate Lottie animations.
 
-# Learn More
+## License
 
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
