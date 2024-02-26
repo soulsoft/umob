@@ -1,17 +1,18 @@
-import { Dimensions } from 'react-native';
+import { Dimensions } from "react-native";
 
-// Splash stack screens
-export const SPLASH_STACK = 'SplashStack';
-export const SPLASH_SCREEN = 'SplashScreen';
-
-// Signin Stack
-export const SIGNIN_STACK = 'SignInStack';
-export const SIGNIN_SCREEN = 'SignInWelcomeScreen';
 
 // Dimensions
-export const WIDTH = Dimensions.get('window').width;
-export const Height = Dimensions.get('window').height;
+export const WIDTH = Dimensions.get("window").width;
+export const Height = Dimensions.get("window").height;
+
 
 //Platforms
-export const ANDROID = 'android';
-export const IOS = 'ios';
+export const ANDROID = "android";
+export const IOS = "ios";
+
+
+// QUIZ POINTS
+export const RIGHT_ANSWER = 30;
+export const WRONG_ANSWER = -20;
+
+

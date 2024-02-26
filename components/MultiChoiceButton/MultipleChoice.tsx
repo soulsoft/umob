@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../state/redux-hooks";
 import { updateCurrentAnswer, updateCurrentScore } from "../../state/reducers/user";
+import { RIGHT_ANSWER, WRONG_ANSWER } from "../../config/constants";
 
 const MultipleChoice = ({ showAnswer, questionData }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -15,9 +16,9 @@ const MultipleChoice = ({ showAnswer, questionData }) => {
       dispatch(updateCurrentAnswer([...currentAnswer, optionLabel]));
       setSelectedOptions([...selectedOptions, optionLabel]);
       if (isCorrect) {
-        dispatch(updateCurrentScore(currentScore + 50));
+        dispatch(updateCurrentScore(currentScore + RIGHT_ANSWER));
       } else {
-        dispatch(updateCurrentScore(currentScore - 20));
+        dispatch(updateCurrentScore(currentScore + WRONG_ANSWER));
       }
     }
   };
@@ -38,25 +39,10 @@ const MultipleChoice = ({ showAnswer, questionData }) => {
         disabled={showAnswer}
       >
         <View
-          style={{
-            width: 24,
-            height: 24,
-            borderRadius: 4,
-            borderWidth: 2,
-            borderColor: "black",
-            marginRight: 10,
-            justifyContent: "center",
-            alignItems: "center"
-          }}
+          style={styles.checkBoxBorder}
         >{isSelected && (
           <View
-            style={{
-              width: 12,
-              height: 12,
-              borderColor: "black",
-              borderWidth: 0.5,
-              backgroundColor: "#DAFC5A"
-            }}
+            style={styles.checkBoxStyle}
           />
         )}
         </View>
@@ -85,6 +71,23 @@ const MultipleChoice = ({ showAnswer, questionData }) => {
 };
 
 const styles = StyleSheet.create({
+  checkBoxStyle: {
+    width: 12,
+    height: 12,
+    borderColor: "black",
+    borderWidth: 0.5,
+    backgroundColor: "#DAFC5A"
+  },
+  checkBoxBorder: {
+    width: 24,
+    height: 24,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: "black",
+    marginRight: 10,
+    justifyContent: "center",
+    alignItems: "center"
+  },
   showAnswerButton: {
     color: "blue",
     textDecorationLine: "underline",

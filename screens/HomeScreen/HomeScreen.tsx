@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import {
   View,
   SafeAreaView,
@@ -8,28 +8,26 @@ import {
 } from "react-native";
 
 import MapView, { MapMarker, Marker } from "react-native-maps";
-import {useAppDispatch, useAppSelector} from '../../state/redux-hooks';
+import { useAppDispatch, useAppSelector } from "../../state/redux-hooks";
 
-const HomeScreen: FC = ({navigation}: any) => {
+const HomeScreen: FC = ({ navigation }: any) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useAppDispatch();
-  const {userInfo} = useAppSelector(state => state.user);
-  const {providers} = useAppSelector(state => state.providers);
-
-  useEffect(() => {
-    //dispatch(fetchProviderss());
-  }, []);
+  const { userInfo } = useAppSelector(state => state.user);
+  const { provider1, provider2, provider3 } = useAppSelector(state => state.providers);
 
 
   const markerRef = useRef<MapMarker>(null);
+  const markerRef2 = useRef<MapMarker>(null);
+  const markerRef3 = useRef<MapMarker>(null);
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: '#ffffff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: "#ffffff",
+        alignItems: "center",
+        justifyContent: "center"
       }}>
       <StatusBar
         barStyle="dark-content"
@@ -37,57 +35,72 @@ const HomeScreen: FC = ({navigation}: any) => {
         backgroundColor="transparent"
       />
 
-        <MapView
-          onMapLoaded={()=>{
-            setIsLoading(false);
-          }}
-          initialRegion={{
-            latitude: 51.9225,
-            longitude: 4.4792,
-            latitudeDelta: 0.1,
-            longitudeDelta: 0.1,
-          }}
-          style={{
-            flex:1,
-            marginTop:30,
-            width: 400,
-            height: 300,
-          }}
-        >{providers.map(vehicle => (
+      <MapView
+        onMapLoaded={() => {
+          setIsLoading(false);
+        }}
+        initialRegion={{
+          latitude: 52.1326,
+          longitude: 5.2913,
+          latitudeDelta: 2.5,
+          longitudeDelta: 2.5
+        }}
+        style={{
+          flex: 1,
+          marginTop: 30,
+          width: 400,
+          height: 300
+        }}
+      >
+        {provider1.map(vehicle => (
           <Marker
             ref={markerRef}
             tracksViewChanges={false}
-            key={vehicle.vehicle_id}
+            key={vehicle?.vehicle_id}
             coordinate={{
-              latitude: vehicle.lat,
-              longitude: vehicle.lon,
+              latitude: vehicle?.lat,
+              longitude: vehicle?.lon
             }}
-            title={'Check | Max range: '+ (vehicle.current_range_meters/1000) + 'KM'}
-          ><View
-            style={{alignItems: 'center',
-              justifyContent: 'center', backgroundColor: "black",borderRadius:20, width:30, height:30, padding: 10, borderColor: 'white'}}>
-              <View style={{width:10, height:10,
-                position: 'absolute',
-                top: -1,
-                right: 15,
-                borderRadius: 10,
-                backgroundColor: vehicle.is_reserved ?'#D96363': 'green',
-                zIndex: 1,
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-            </View>
-            <Text style={{color: 'white',textAlign: 'center', fontSize:9, fontWeight: '900',alignSelf: 'stretch'}}>C</Text>
-          </View></Marker>
-        ))}</MapView>
+            pinColor={"#000000"}
+            title={"Check | Max range: " + (vehicle.current_range_meters / 1000) + "KM"}
+          >
+          </Marker>
+        ))}
+        {
+          provider2.map(bike => (
+            <Marker
+              ref={markerRef2}
+              tracksViewChanges={false}
+              key={bike?.bike_id}
+              coordinate={{
+                latitude: bike?.lat,
+                longitude: bike?.lon
+              }}
+              pinColor={"#80f701"}
+              title={"Cykl Bike"}
+            ></Marker>))}
+        {
+          provider3.map(bike => (
+            <Marker
+              ref={markerRef3}
+              tracksViewChanges={false}
+              key={bike?.bike_id}
+              coordinate={{
+                latitude: bike?.lat,
+                longitude: bike?.lon
+              }}
+              pinColor={"#a35c00"}
+              title={"Donkey Bike"}
+            ></Marker>))}
+      </MapView>
       {isLoading && (<View style={{
-          ...StyleSheet.absoluteFillObject,
-          backgroundColor: 'rgba(255, 255, 255, 0.8)',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-          <ActivityIndicator size="large" color="#0000ff" />
-        </View>)}
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        justifyContent: "center",
+        alignItems: "center"
+      }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>)}
     </SafeAreaView>
   );
 };
