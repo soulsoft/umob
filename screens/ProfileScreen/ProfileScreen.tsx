@@ -3,18 +3,22 @@ import {
   View,
   SafeAreaView,
   StatusBar,
-  Text,
-  ActivityIndicator,
-  StyleSheet,
-  TouchableOpacity
+  Text, ActivityIndicator, StyleSheet, TouchableOpacity, Image
 
 } from "react-native";
 
+import MapView, { MapMarker, Marker } from "react-native-maps";
 import { useAppDispatch, useAppSelector } from "../../state/redux-hooks";
+import UmobButton from "../../components/UmobButton";
+import { updateIsLoggedIn } from "../../state/reducers/user";
+import Iconsax from "../../components/IconSax";
+import { avatar } from "../../config/images";
 
 const ProfileScreen: FC = ({ navigation }: any) => {
+  const [isLoading, setIsLoading] = useState(true);
 
-
+  const dispatch = useAppDispatch();
+  const { userInfo } = useAppSelector(state => state.user);
   const TouchableItemRender = (
     title: string,
     iconName: string,
@@ -141,11 +145,50 @@ const ProfileScreen: FC = ({ navigation }: any) => {
         translucent
         backgroundColor="transparent"
       />
-      <View style={{ flex: 1, alignSelf: "stretch", alignItems: "center", justifyContent: "center" }}>
-        <Text>Profile Screen</Text>
+      <View style={styles.profileContainer}>
+        <View style={styles.infoContainer}>
+          <TouchableOpacity style={styles.avtarcontainerStyle} onPress={() => {
+            alert("Upload a new Avatar");
+          }}>
+            <Image source={avatar} style={styles.avatarStyle} />
+          </TouchableOpacity>
+          {ItemRender("Full Name", userInfo?.name, true)}
+          {ItemRender("Nick Name", userInfo?.nickname, true)}
+          {ItemRender("Email", userInfo?.email, true)}
+        </View>
+        <View style={{ marginBottom: 40 }}>
+          <UmobButton text={"Logout"} onPressButton={() => {
+            dispatch(updateIsLoggedIn(false));
+          }} />
+        </View>
       </View>
     </SafeAreaView>
   );
 };
 
+
+const styles = StyleSheet.create({
+  profileContainer: {
+    flex: 1,
+    alignSelf: "stretch",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 20
+  },
+  infoContainer: {
+    flex: 1,
+    alignSelf: "stretch",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  avtarcontainerStyle: {
+    alignSelf: "center",
+    alignItems: "center",
+    marginBottom: 50
+  },
+  avatarStyle: {
+    height: 130,
+    width: 130
+  }
+});
 export default ProfileScreen;
